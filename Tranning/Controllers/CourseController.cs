@@ -163,6 +163,74 @@ namespace Tranning.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Update(int id = 0)
+        {
+            CourseDetail course = new CourseDetail();
+            var data = _dbContext.Courses.Where(m => m.id == id).FirstOrDefault();
+            if (data != null)
+            {
+                course.id = data.id;
+                course.name = data.name;
+                course.description = data.description;
+                course.start_date = data.start_date;
+                course.end_date = data.end_date;
+                course.status = data.status;
+                course.category_id = data.category_id;
+
+                // Initialize ViewBag.Stores if it's null
+                ViewBag.Stores ??= _dbContext.Categories
+                                    .Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name })
+                                    .ToList();
+            }
+
+            return View(course);
+        }
+
+         [HttpPost]
+        public async Task<IActionResult> Update(CourseDetail course, IFormFile file)
+        {
+            try
+            {
+                var data = _dbContext.Courses.Where(m => m.id == course.id).FirstOrDefault();
+                string uniqueIconAvatar = "";
+                if (course.Photo != null)
+                {
+                    // Await the result of the asynchronous method
+                    uniqueIconAvatar = await UploadFile(course.Photo);
+                }
+
+                if (data != null)
+                {
+                    // Update data in the database with the form data
+                    data.name = course.name;
+                    data.description = course.description;
+                    data.start_date = course.start_date;
+                    data.end_date = course.end_date;
+                    data.status = course.status;
+                    data.category_id = course.category_id;
+
+                    if (!string.IsNullOrEmpty(uniqueIconAvatar))
+                    {
+                        data.avatar = uniqueIconAvatar;
+                    }
+
+                    await _dbContext.SaveChangesAsync(true);
+                    TempData["UpdateStatus"] = true;
+                }
+                else
+                {
+                    TempData["UpdateStatus"] = false;
+                }
+            }
+            catch
+            {
+                TempData["UpdateStatus"] = false;
+            }
+            return RedirectToAction(nameof(CourseController.Index), "Course");
+        }
+
+
 
         [HttpGet]
         public IActionResult Delete(int id = 0)

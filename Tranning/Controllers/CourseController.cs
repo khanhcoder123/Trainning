@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,14 +81,12 @@ namespace Tranning.Controllers
                     }
                     catch (Exception ex)
                     {
-                        // Log the specific error within ModelState.IsValid block
                         _logger.LogError(ex, "An error occurred while processing a valid model state.");
                         TempData["saveStatus"] = false;
                     }
                     return RedirectToAction(nameof(Index));
                 }
 
-                // Log ModelState errors
                 foreach (var modelState in ModelState.Values)
                 {
                     foreach (var error in modelState.Errors)
@@ -101,13 +100,11 @@ namespace Tranning.Controllers
             }
             catch (Exception ex)
             {
-                // Log any unexpected exception
                 _logger.LogError(ex, "An unexpected error occurred while processing the request.");
                 TempData["saveStatus"] = false;
                 return RedirectToAction(nameof(Index));
             }
         }
-
 
         private async Task<string> UploadFile(IFormFile file)
         {
@@ -115,25 +112,21 @@ namespace Tranning.Controllers
             try
             {
                 string pathUploadServer = "wwwroot\\uploads\\images";
-
                 string fileName = file.FileName;
                 fileName = Path.GetFileName(fileName);
-                string uniqueStr = Guid.NewGuid().ToString(); 
-               
+                string uniqueStr = Guid.NewGuid().ToString();
                 fileName = uniqueStr + "-" + fileName;
                 string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), pathUploadServer, fileName);
                 var stream = new FileStream(uploadPath, FileMode.Create);
-                file.CopyToAsync(stream);
-               
+                await file.CopyToAsync(stream);
                 uniqueFileName = fileName;
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error during file upload.");
                 uniqueFileName = ex.Message.ToString();
             }
             return uniqueFileName;
-        
-
         }
 
         private void PopulateCategoryDropdown()
@@ -151,15 +144,14 @@ namespace Tranning.Controllers
                 }
                 else
                 {
-                    // Log or handle the case where categories is null
                     _logger.LogError("Categories is null");
-                    ViewBag.Stores = new List<SelectListItem>(); // Set a default value if needed
+                    ViewBag.Stores = new List<SelectListItem>();
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while populating category dropdown.");
-                ViewBag.Stores = new List<SelectListItem>(); // Set a default value if needed
+                ViewBag.Stores = new List<SelectListItem>();
             }
         }
 
@@ -178,7 +170,6 @@ namespace Tranning.Controllers
                 course.status = data.status;
                 course.category_id = data.category_id;
 
-                // Initialize ViewBag.Stores if it's null
                 ViewBag.Stores ??= _dbContext.Categories
                                     .Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.name })
                                     .ToList();
@@ -187,7 +178,7 @@ namespace Tranning.Controllers
             return View(course);
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Update(CourseDetail course, IFormFile file)
         {
             try
@@ -196,13 +187,11 @@ namespace Tranning.Controllers
                 string uniqueIconAvatar = "";
                 if (course.Photo != null)
                 {
-                    // Await the result of the asynchronous method
                     uniqueIconAvatar = await UploadFile(course.Photo);
                 }
 
                 if (data != null)
                 {
-                    // Update data in the database with the form data
                     data.name = course.name;
                     data.description = course.description;
                     data.start_date = course.start_date;
@@ -215,7 +204,7 @@ namespace Tranning.Controllers
                         data.avatar = uniqueIconAvatar;
                     }
 
-                    await _dbContext.SaveChangesAsync(true);
+                    await _dbContext.SaveChangesAsync();
                     TempData["UpdateStatus"] = true;
                 }
                 else
@@ -223,14 +212,14 @@ namespace Tranning.Controllers
                     TempData["UpdateStatus"] = false;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred during the update operation.");
                 TempData["UpdateStatus"] = false;
             }
-            return RedirectToAction(nameof(CourseController.Index), "Course");
+
+            return RedirectToAction(nameof(Index));
         }
-
-
 
         [HttpGet]
         public IActionResult Delete(int id = 0)
@@ -240,8 +229,9 @@ namespace Tranning.Controllers
                 var data = _dbContext.Courses.Where(m => m.id == id).FirstOrDefault();
                 if (data != null)
                 {
-                    data.deleted_at = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                    _dbContext.SaveChanges(true);
+                    // Use Remove method to delete the entity
+                    _dbContext.Courses.Remove(data);
+                    _dbContext.SaveChanges();
                     TempData["DeleteStatus"] = true;
                 }
                 else
@@ -249,12 +239,13 @@ namespace Tranning.Controllers
                     TempData["DeleteStatus"] = false;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred during the delete operation.");
                 TempData["DeleteStatus"] = false;
             }
-            return RedirectToAction(nameof(CourseController.Index), "Course");
-        }
 
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

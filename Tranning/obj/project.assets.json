@@ -3350,11 +3350,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\khanh\\Downloads\\ASP-MVC-NET7-main (1)\\ASP-MVC-NET7-main\\Tranning\\Tranning.csproj",
+      "projectUniqueName": "C:\\Users\\khanh\\Documents\\Zalo Received Files\\Trainning\\Trainning\\Tranning\\Tranning.csproj",
       "projectName": "Tranning",
-      "projectPath": "C:\\Users\\khanh\\Downloads\\ASP-MVC-NET7-main (1)\\ASP-MVC-NET7-main\\Tranning\\Tranning.csproj",
+      "projectPath": "C:\\Users\\khanh\\Documents\\Zalo Received Files\\Trainning\\Trainning\\Tranning\\Tranning.csproj",
       "packagesPath": "C:\\Users\\khanh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\khanh\\Downloads\\ASP-MVC-NET7-main (1)\\ASP-MVC-NET7-main\\Tranning\\obj\\",
+      "outputPath": "C:\\Users\\khanh\\Documents\\Zalo Received Files\\Trainning\\Trainning\\Tranning\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khanh\\AppData\\Roaming\\NuGet\\NuGet.Config",

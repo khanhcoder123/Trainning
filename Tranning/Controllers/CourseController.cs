@@ -55,39 +55,59 @@ namespace Tranning.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(CourseDetail course, IFormFile Photo)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    string uniqueFileName = await UploadFile(Photo);
-                    var courseData = new Course()
+                    try
                     {
-                        category_id = course.category_id,
-                        name = course.name,
-                        description = course.description,
-                        avatar = uniqueFileName,
-                        status = course.status,
-                        start_date = course.start_date,
-                        end_date = course.end_date,
-                        created_at = DateTime.Now
-                    };
+                        string uniqueFileName = await UploadFile(Photo);
+                        var courseData = new Course()
+                        {
+                            category_id = course.category_id,
+                            name = course.name,
+                            description = course.description,
+                            avatar = uniqueFileName,
+                            status = course.status,
+                            start_date = course.start_date,
+                            end_date = course.end_date,
+                            created_at = DateTime.Now
+                        };
 
-                    _dbContext.Courses.Add(courseData);
-                    _dbContext.SaveChanges();
-                    TempData["saveStatus"] = true;
+                        _dbContext.Courses.Add(courseData);
+                        _dbContext.SaveChanges();
+                        TempData["saveStatus"] = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the specific error within ModelState.IsValid block
+                        _logger.LogError(ex, "An error occurred while processing a valid model state.");
+                        TempData["saveStatus"] = false;
+                    }
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (Exception ex)
+
+                // Log ModelState errors
+                foreach (var modelState in ModelState.Values)
                 {
-                    _logger.LogError(ex, "An error occurred while adding a course.");
-                    TempData["saveStatus"] = false;
+                    foreach (var error in modelState.Errors)
+                    {
+                        _logger.LogError($"ModelState Error: {error.ErrorMessage}");
+                    }
                 }
+
+                PopulateCategoryDropdown();
+                return View(course);
+            }
+            catch (Exception ex)
+            {
+                // Log any unexpected exception
+                _logger.LogError(ex, "An unexpected error occurred while processing the request.");
+                TempData["saveStatus"] = false;
                 return RedirectToAction(nameof(Index));
             }
-
-            
-            PopulateCategoryDropdown();
-            return View(course);
         }
+
 
         private async Task<string> UploadFile(IFormFile file)
         {
@@ -118,10 +138,55 @@ namespace Tranning.Controllers
 
         private void PopulateCategoryDropdown()
         {
-            ViewBag.Stores = _dbContext.Categories
-                .Where(m => m.deleted_at == null)
-                .Select(m => new SelectListItem { Value = m.id.ToString(), Text = m.name })
-                .ToList();
+            try
+            {
+                var categories = _dbContext.Categories
+                    .Where(m => m.deleted_at == null)
+                    .Select(m => new SelectListItem { Value = m.id.ToString(), Text = m.name })
+                    .ToList();
+
+                if (categories != null)
+                {
+                    ViewBag.Stores = categories;
+                }
+                else
+                {
+                    // Log or handle the case where categories is null
+                    _logger.LogError("Categories is null");
+                    ViewBag.Stores = new List<SelectListItem>(); // Set a default value if needed
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while populating category dropdown.");
+                ViewBag.Stores = new List<SelectListItem>(); // Set a default value if needed
+            }
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id = 0)
+        {
+            try
+            {
+                var data = _dbContext.Courses.Where(m => m.id == id).FirstOrDefault();
+                if (data != null)
+                {
+                    data.deleted_at = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    _dbContext.SaveChanges(true);
+                    TempData["DeleteStatus"] = true;
+                }
+                else
+                {
+                    TempData["DeleteStatus"] = false;
+                }
+            }
+            catch
+            {
+                TempData["DeleteStatus"] = false;
+            }
+            return RedirectToAction(nameof(CourseController.Index), "Course");
+        }
+
     }
 }

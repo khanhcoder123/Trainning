@@ -1,0 +1,59 @@
+﻿@model Tranning.Models.TopicModel
+
+@{
+    ViewData["Title"] = "Topic Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h4 class="display-6">List Topic</h4>
+        <a class="btn btn-primary btn-sm" href="@Url.Action("Add","Topic")">Add Topic</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>COURSE ID</th>
+                <th>NAME</th>
+                <th>DESCRIPTION</th>
+                <th>VIDEOS</th>
+                <th>DOCUMENTS</th>
+                <th>ATTACH FILE</th>
+                <th>STATUS</th>
+                <th>CREATED AT</th>
+                <th>UPDATED AT</th>
+                <th colspan="2" width="5%">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TopicDetailLists)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.course_id</td>
+                    <td>@item.name</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.videos))
+                        {
+                            <img class="img-fluid" src="/uploads/images/@item.videos" />
+                        }
+                    </td>
+                    <td>@item.description</td>
+                    <td>@item.status</td>
+                    <td>@item.documents</td>
+                    <td>@item.attach_file</td>
+                    <td>@item.created_at?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@item.updated_at?.ToString("yyyy-MM-dd HH:mm:ss")</td>
+
+                    <td>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Update","Course", new { id = @item.id })">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Course", new { id = @item.id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

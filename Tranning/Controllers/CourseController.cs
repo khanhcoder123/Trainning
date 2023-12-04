@@ -165,6 +165,7 @@ namespace Tranning.Controllers
                 course.id = data.id;
                 course.name = data.name;
                 course.description = data.description;
+                course.avatar = data.avatar;
                 course.start_date = data.start_date;
                 course.end_date = data.end_date;
                 course.status = data.status;

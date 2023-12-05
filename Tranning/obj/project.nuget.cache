@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "38rxisU0rlz9UvYcV18Q2qnGVvElBi7DOfVRTzMvKvRKJ2sKU+gHiQoCdr001xQY0UMoiZxpLF4vKzENY/rjrw==",
+  "dgSpecHash": "cwAmqcYjpRvqRnyS8C5/8r1udz+4vqJTA4YbNJGl3YgDMke1ARrqeW8uxZOBWjlso8LzzBZCXBIyCHhmV5QACA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khanh\\Documents\\Zalo Received Files\\Trainning\\Trainning\\Tranning\\Tranning.csproj",
+  "projectFilePath": "C:\\Users\\khanh\\Downloads\\AppTopic-main\\AppTopic-main\\Tranning\\Tranning.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khanh\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\khanh\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

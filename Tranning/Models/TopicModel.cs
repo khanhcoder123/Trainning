@@ -21,16 +21,16 @@ namespace Tranning.Models
         public string name { get; set; }
         public string? description { get; set; }
         public string? videos { get; set; }
-        public string documents { get; set; }
-        public string attach_file { get; set; }
+        public string? documents { get; set; }
+
+        [Required(ErrorMessage = "Please choose a status.")]
+        public string status { get; set; }
+        public string? attach_file { get; set; }
 
         [Required(ErrorMessage = "Please choose a file.")]
         [AllowedExtensionFile(new string[] { ".doc", ".jpg", ".jpeg", ".gif" })]
         [AllowedSizeFile(8 * 1024 * 1024)]
         public IFormFile file { get; set; }
-
-        [Required(ErrorMessage = "Please choose a status.")]
-        public string status { get; set; }
 
         [Required(ErrorMessage = "Please choose a file.")]
         [AllowedExtensionFile(new string[] { ".png", ".jpg", ".jpeg", ".gif" })]

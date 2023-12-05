@@ -19,7 +19,7 @@ namespace Tranning.DataDBContext
         [Column("videos", TypeName = "Varchar(150)"), AllowNull]
         public string videos { get; set; }
         [Column("documents", TypeName = "Varchar(150)"), AllowNull]
-        public string documents { get; set; }
+        public string? documents { get; set; }
         [Column("attach_file", TypeName = "Varchar(150)"), AllowNull]
         public string attach_file { get; set; }
 

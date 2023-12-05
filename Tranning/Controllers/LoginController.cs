@@ -41,11 +41,11 @@ namespace Tranning.Controllers
             else if (User.IsInRole("User"))
             {
                 // Check the user ID and redirect accordingly
-                if (model.UserID == "1")
+                if (model.UserID == "5")
                 {
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                    return RedirectToAction(nameof(AdminController.Index), "Admin");
                 }
-                else if (model.UserID == "2")
+                else if (model.UserID == "6")
                 {
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }

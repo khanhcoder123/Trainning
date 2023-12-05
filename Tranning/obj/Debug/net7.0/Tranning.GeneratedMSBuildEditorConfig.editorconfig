@@ -9,93 +9,105 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Tranning
 build_property.RootNamespace = Tranning
-build_property.ProjectDir = C:\Users\khanh\Documents\Zalo Received Files\Trainning\Trainning\Tranning\
+build_property.ProjectDir = C:\Users\khanh\Downloads\AppTopic-main\AppTopic-main\Tranning\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\khanh\Documents\Zalo Received Files\Trainning\Trainning\Tranning
+build_property.MSBuildProjectDirectory = C:\Users\khanh\Downloads\AppTopic-main\AppTopic-main\Tranning
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Category/Add.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Category/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Category/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Category/Update.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Category/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Contact/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Contact/Money.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Contact/Money.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxNb25leS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Course/Add.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Course/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEFkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Course/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Course/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Course/Update.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Course/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/HomeUser/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/HomeUser/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVVzZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Home/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Home/Privacy.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Login/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Shared/Error.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Shared/_MainLayout.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/_AdminMainLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbk1haW5MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/_MainLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Shared/_MyLayout.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/_MyLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NeUxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Topic/Add.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Topic/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Topic/Index.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Topic/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/_ViewImports.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Topic/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/_ViewStart.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/khanh/Documents/Zalo Received Files/Trainning/Trainning/Tranning/Views/Shared/_Layout.cshtml]
+[C:/Users/khanh/Downloads/AppTopic-main/AppTopic-main/Tranning/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-d0tw4ep0p2

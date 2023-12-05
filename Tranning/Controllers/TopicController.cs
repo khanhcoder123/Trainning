@@ -23,10 +23,22 @@ namespace Tranning.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string SearchString)
         {
             TopicModel topicModel = new TopicModel();
-            topicModel.TopicDetailLists = _dbContext.Topics
+
+            // Retrieve all topics from the database
+            var data = _dbContext.Topics
+                .Where(m => m.deleted_at == null);
+
+            // Filter topics based on the search string
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                data = data.Where(m => m.name.Contains(SearchString) || m.description.Contains(SearchString));
+            }
+
+            // Project topics to TopicDetail and convert to a list
+            topicModel.TopicDetailLists = data
                 .Select(item => new TopicDetail
                 {
                     course_id = item.course_id,
@@ -36,13 +48,14 @@ namespace Tranning.Controllers
                     videos = item.videos,
                     status = item.status,
                     attach_file = item.attach_file,
-                    documents  = item.documents,
+                    documents = item.documents,
                     created_at = item.created_at,
                     updated_at = item.updated_at
                 }).ToList();
 
             return View(topicModel);
         }
+
 
         [HttpGet]
         public IActionResult Add()
@@ -55,7 +68,7 @@ namespace Tranning.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add(TopicDetail topic, IFormFile Photo)
+        public async Task<IActionResult> Add(TopicDetail topic)
         {
             try
             {
@@ -63,7 +76,8 @@ namespace Tranning.Controllers
                 {
                     try
                     {
-                        string uniqueFileName = await UploadFile(Photo);
+                        string uniqueFileName = await UploadFile(topic.photo);
+                        string file = await UploadFile(topic.file);
                         var topicData = new Topic()
                         {
                             course_id= topic.course_id,
@@ -72,7 +86,7 @@ namespace Tranning.Controllers
                             videos = uniqueFileName,
                             status = topic.status,
                             documents = topic.documents,
-                            attach_file = topic.attach_file,
+                            attach_file = file,
                             created_at = DateTime.Now
                         };
 
@@ -154,6 +168,97 @@ namespace Tranning.Controllers
                 _logger.LogError(ex, "An error occurred while populating category dropdown.");
                 ViewBag.Stores = new List<SelectListItem>();
             }
-        }      
+        }
+        [HttpGet]
+        public IActionResult Update(int id = 0)
+        {
+            TopicDetail topic = new TopicDetail();
+            var data = _dbContext.Topics.Where(m => m.id == id).FirstOrDefault();
+            if (data != null)
+            {
+                topic.id = data.id;
+                topic.name = data.name;
+                topic.course_id = data.course_id;
+                topic.description = data.description;
+                topic.status = data.status;
+                topic.documents = data.documents;
+            }
+
+            PopulateCategoryDropdown(); // Make sure to populate the dropdown
+            return View(topic);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(TopicDetail topic, IFormFile file)
+        {
+            try
+            {
+                var data = _dbContext.Topics.Where(m => m.id == topic.id).FirstOrDefault();
+                string uniqueFileName = "";
+
+                if (file != null)
+                {
+                    uniqueFileName = await UploadFile(file);
+                }
+
+                if (data != null)
+                {
+                    data.name = topic.name;
+                    data.course_id = topic.course_id;
+                    data.description = topic.description;
+                    data.status = topic.status;
+                    data.documents = topic.documents;
+
+                    if (!string.IsNullOrEmpty(uniqueFileName))
+                    {
+                        data.attach_file = uniqueFileName;
+                    }
+
+                    await _dbContext.SaveChangesAsync();
+                    TempData["UpdateStatus"] = true;
+                }
+                else
+                {
+                    TempData["UpdateStatus"] = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred during the update operation.");
+                TempData["UpdateStatus"] = false;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id = 0)
+        {
+            try
+            {
+                var data = _dbContext.Topics
+                    .Where(m => m.id == id && m.deleted_at == null)
+                    .FirstOrDefault();
+
+                if (data != null)
+                {
+                    data.deleted_at = DateTime.Now; // Updated to the current date and time
+                    _dbContext.SaveChanges();
+                    TempData["DeleteStatus"] = true;
+                }
+                else
+                {
+                    TempData["DeleteStatus"] = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred during the delete operation.");
+                TempData["DeleteStatus"] = false;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

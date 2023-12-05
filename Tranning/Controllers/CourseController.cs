@@ -23,10 +23,22 @@ namespace Tranning.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string SearchString)
         {
             CourseModel courseModel = new CourseModel();
-            courseModel.CourseDetailLists = _dbContext.Courses
+
+            // Retrieve all courses from the database
+            var data = _dbContext.Courses
+                .Where(m => m.deleted_at == null);
+
+            // Filter courses based on the search string
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                data = data.Where(m => m.name.Contains(SearchString) || m.description.Contains(SearchString));
+            }
+
+            // Project courses to CourseDetail and convert to a list
+            courseModel.CourseDetailLists = data
                 .Select(item => new CourseDetail
                 {
                     category_id = item.category_id,
@@ -43,6 +55,7 @@ namespace Tranning.Controllers
 
             return View(courseModel);
         }
+
 
         [HttpGet]
         public IActionResult Add()
@@ -76,7 +89,7 @@ namespace Tranning.Controllers
                         };
 
                         _dbContext.Courses.Add(courseData);
-                        _dbContext.SaveChanges();
+                        _dbContext.SaveChanges(true);
                         TempData["saveStatus"] = true;
                     }
                     catch (Exception ex)
@@ -204,7 +217,6 @@ namespace Tranning.Controllers
                     {
                         data.avatar = uniqueIconAvatar;
                     }
-
                     await _dbContext.SaveChangesAsync();
                     TempData["UpdateStatus"] = true;
                 }

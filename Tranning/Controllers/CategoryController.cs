@@ -88,7 +88,7 @@ namespace Tranning.Controllers
                     _dbContext.SaveChanges(true);
                     TempData["saveStatus"] = true;
                 } 
-                catch
+                catch(Exception ex)
                 {
                     TempData["saveStatus"] = false;
                 }
@@ -125,7 +125,7 @@ namespace Tranning.Controllers
                 string uniqueIconAvatar = "";
                 if (category.Photo != null)
                 {
-                    uniqueIconAvatar = uniqueIconAvatar = UploadFile(category.Photo);
+                    uniqueIconAvatar  = UploadFile(category.Photo);
                 }
 
                 if (data != null)

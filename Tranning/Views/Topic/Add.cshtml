@@ -46,10 +46,15 @@
                                 <span class="text-danger" asp-validation-for="file"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="documents">Documents</label>
+                                <textarea asp-for="documents" class="form-control" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="photo" class="control-label"></label>
                                 <input type="file" class="form-control" asp-for="photo" />
                                 <span class="text-danger" asp-validation-for="photo"></span>
                             </div>
+                            
                         </div>
                         <div class="sm-12 col-md-6">
                             <button class="btn btn-primary my-3" type="submit">Save</button>

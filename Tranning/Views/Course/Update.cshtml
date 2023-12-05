@@ -53,6 +53,20 @@
                                 <span asp-validation-for="status" class="text-danger"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Photo" class="control-label">Current Image</label>
+                                @if (!string.IsNullOrEmpty(Model.avatar))
+                                {
+                                    <div>
+                                        <img src="/uploads/images/@Model.avatar" class="img-thumbnail" alt="Current Image">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>No image available</div>
+                                }
+                            </div>
+
+                            <div class="form-group">
                                 <label asp-for="Photo" class="control-label"></label>
                                 <input type="file" class="form-control" asp-for="Photo" />
                                 <span class="text-danger" asp-validation-for="Photo"></span>
